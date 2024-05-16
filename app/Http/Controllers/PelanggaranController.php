@@ -52,9 +52,18 @@ class PelanggaranController extends Controller
             'nama_kategori' => 'required',
             
         ]);
-
         KatPelanggaran::create($request->all());
+        return redirect()->route('Pelanggaran.index')->with('success', 'Pelanggaran berhasil ditambahkan.');
+    }
 
+    public function storeSubKategori(Request $request)
+    {
+        $request->validate([
+            'nama_sub_kategori' => 'required',
+            'id_kat_pelanggaran' => 'required',
+            
+        ]);
+        SubKatPelanggaran::create($request->all());
         return redirect()->route('Pelanggaran.index')->with('success', 'Pelanggaran berhasil ditambahkan.');
     }
      
