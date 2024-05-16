@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pelanggaran;
 use App\Models\SubKatPelanggaran;
 use App\Models\KatPelanggaran;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 
@@ -12,9 +13,12 @@ class PelanggaranController extends Controller
 {
     public function index(){
         $pelanggarans = Pelanggaran::with('katPelanggaran')->get();
-        return view('Pelanggaran.index', compact('pelanggarans'));
+        $kategoris = KatPelanggaran::all();
+        $subKategories = SubKatPelanggaran::all(); 
+        return view('Pelanggaran.index', compact('kategoris','pelanggarans','subKategories'));
     }
    
+    
     public function create(){
             
         $kategories = KatPelanggaran::all();
@@ -42,6 +46,19 @@ class PelanggaranController extends Controller
         return redirect()->route('Pelanggaran.index')->with('success', 'Pelanggaran berhasil ditambahkan.');
     }
 
+    public function storeKategori(Request $request)
+    {
+        $request->validate([
+            'nama_kategori' => 'required',
+            
+        ]);
+
+        KatPelanggaran::create($request->all());
+
+        return redirect()->route('Pelanggaran.index')->with('success', 'Pelanggaran berhasil ditambahkan.');
+    }
+     
+   
 
     
 
