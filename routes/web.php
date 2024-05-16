@@ -1,7 +1,13 @@
 <?php
 
+use App\Http\Controllers\PelanggaranController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\PermissionsController;
+use App\Http\Controllers\KategoriController;
+use App\Models\Kategori;
+use App\Models\Pelanggaran;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +52,16 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         /**
          * User Routes
          */
+
+        Route::get('Pelanggaran', [PelanggaranController::class, 'index'])->name('Pelanggaran.index');
+        Route::get('/Pelanggaran/create', [PelanggaranController::class, 'create'])->name('Pelanggaran.create');
+        Route::get('/subkategori/{katPelanggaranId}', [PelanggaranController::class, 'getByKatPelanggaran']);
+        Route::resource('Pelanggaran', PelanggaranController::class);
+
+        Route::get('Kategori', [KategoriController::class, 'index'])->name('Kategori.index');
+
+
+
         Route::group(['prefix' => 'users'], function() {
             Route::get('/', [App\Http\Controllers\UsersController::class, 'index'])->name('users.index');
             Route::get('/create', 'UsersController@create')->name('users.create');
