@@ -16,7 +16,7 @@ class KategoriSeeder extends Seeder
         DB::table('kat_pelanggaran')->insert([
             ['nama_kategori' => 'Komponen Kelakuan'],
             ['nama_kategori' => 'Komponen Kerajinan'],
-            ['nama_kategori' => 'Komponen Kehadiran'],
+            ['nama_kategori' => 'Komponen Kerapihan'],
           
         ]);
     }

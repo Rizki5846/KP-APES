@@ -9,29 +9,11 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link {{ request()->is('users*') ? 'active' : ''}}" href="{{ route('users.index') }}">
-            <svg class="nav-icon">
-                <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
-            </svg>
-            {{ __('Users') }}
-        </a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link {{ request()->is('roles*') ? 'active' : ''}}" href="{{ route('roles.index') }}">
-            <svg class="nav-icon">
-                <use xlink:href="{{ asset('icons/coreui.svg#cil-group') }}"></use>
-            </svg>
-            {{ __('Roles') }}
-        </a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link {{ request()->is('permissions*') ? 'active' : ''}}" href="{{ route('permissions.index') }}">
+        <a class="nav-link {{ request()->is('InputPelanggaran*') ? 'active' : ''}}" href="{{ route('InputPelanggaran.index') }}">
             <svg class="nav-icon">
                 <use xlink:href="{{ asset('icons/coreui.svg#cil-room') }}"></use>
             </svg>
-            {{ __('Permissions') }}
+            {{ __('Input Pelanggaran') }}
         </a>
     </li>
     <li class="nav-item">
@@ -48,9 +30,17 @@
             <svg class="nav-icon">
                 <use xlink:href="{{ asset('icons/coreui.svg#cil-star') }}"></use>
             </svg>
-            Two-level menu
+            Data Master
         </a>
         <ul class="nav-group-items" style="height: 0px;">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('Siswa.index') }}" target="_top">
+                    <svg class="nav-icon">
+                        <use xlink:href="{{ asset('icons/coreui.svg#cil-group') }}"></use>
+                    </svg>
+                    Siswa
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="#" target="_top">
                     <svg class="nav-icon">

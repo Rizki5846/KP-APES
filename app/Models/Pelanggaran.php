@@ -9,6 +9,7 @@ use App\Models\SubKatPelanggaran;
 class Pelanggaran extends Model
 {
     use HasFactory;
+    protected $table = 'pelanggarans';
 
     protected $fillable = ['nama_pelanggaran', 'id_sub_kategori', 'id_kat_pelanggaran', 'poin'];
 

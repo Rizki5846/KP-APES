@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class PelanggaranSeeder extends Seeder
 {
@@ -18,31 +16,29 @@ class PelanggaranSeeder extends Seeder
     {
         DB::table('pelanggarans')->insert([
             [
-                'nama_pelanggaran' => 'rambut panjang',
-                'id_sub_kategori' => 6,
-                'id_kat_pelanggaran' => 3,
+                'nama_pelanggaran' => 'Tidak Membawa Buku',
+                'id_sub_kategori' => 37, // Sesuaikan dengan id_sub_kategori yang ada
+                'id_kat_pelanggaran' => 4, // Sesuaikan dengan id_kat_pelanggaran yang ada
                 'poin' => 10,
                 'created_at' => now(),
-                'updated_at' => now(),
+                'updated_at' => now()
             ],
             [
-                'nama_pelanggaran' => 'membawa miras',
-                'id_sub_kategori' => 5,
-                'id_kat_pelanggaran' => 1,
-                'poin' => 20,
+                'nama_pelanggaran' => 'Terlambat Masuk Kelas',
+                'id_sub_kategori' => 37,
+                'id_kat_pelanggaran' => 3,
+                'poin' => 15,
                 'created_at' => now(),
-                'updated_at' => now(),
+                'updated_at' => now()
             ],
             [
-                'nama_pelanggaran' => 'Pelanggaran B',
-                'id_sub_kategori' => 2,
-                'id_kat_pelanggaran' => 2,
-                'poin' => 20,
+                'nama_pelanggaran' => 'Bolos Sekolah',
+                'id_sub_kategori' => 37,
+                'id_kat_pelanggaran' => 4,
+                'poin' => 50,
                 'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            // Add more records as needed
+                'updated_at' => now()
+            ]
         ]);
     }
 }
-

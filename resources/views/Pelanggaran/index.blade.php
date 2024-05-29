@@ -23,7 +23,7 @@ User List
                 <div class="card-body">
                     <h5 class="card-title">Daftar Sub Kategori Pelanggaran</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Tambahkan data sub kategori pelanggaran baru.</h6>
-                    <button type="button" class="btn btn-primary btn-sm float-right" data-bs-toggle="modal" data-bs-target="#addSubKategoriModal">Tambah Kategori Pelanggaran</button>
+                    <button type="button" class="btn btn-primary btn-sm float-right" data-bs-toggle="modal" data-bs-target="#addSubKategoriModal">Tambah Sub Kategori Pelanggaran</button>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@ User List
             <h6 class="card-subtitle mb-2 text-muted">Kelola data pelanggaran di sini.</h6>
 
             <div class="mb-7 text-end">
-                <a href="{{ route('Pelanggaran.create') }}" class="btn btn-primary btn-sm float-right">Tambah Pelanggaran</a>
+                <button class="btn btn-primary btn-sm float-right" data-bs-toggle="modal" data-bs-target="#createPelanggaranModal">Tambah Pelanggaran</button>
             </div>
 
             <div class="mt-2">
@@ -51,79 +51,35 @@ User List
                         <th scope="col" width="10%">Kategori Pelanggaran</th>
                         <th scope="col" width="50%">Nama Pelanggaran</th>
                         <th scope="col" width="5%">Poin</th>
-                        <th scope="col" >Action</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($pelanggarans as $pelanggaran)
                     <tr>
                         <td scope="row">{{ $loop->iteration }}</td>
-                        <td>{{ $pelanggaran->katPelanggaran->nama_kategori}}</td>
+                        <td>{{ $pelanggaran->katPelanggaran->nama_kategori }}</td>
                         <td>{{ $pelanggaran->nama_pelanggaran }}</td>
                         <td>{{ $pelanggaran->poin }}</td>
-                      
                         <td>
-                            <a href="#" class="btn btn-warning btn-sm">Show</a>
-                            <a href="#" class="btn btn-info btn-sm">Edit</a>
+                            <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#editPelanggaranModal" data-id="{{ $pelanggaran->id }}" data-nama="{{ $pelanggaran->nama_pelanggaran }}" data-kategori="{{ $pelanggaran->id_kat_pelanggaran }}" data-subkategori="{{ $pelanggaran->id_sub_kategori }}" data-poin="{{ $pelanggaran->poin }}">Edit</button>
+                            <form action="{{ route('Pelanggaran.destroy', $pelanggaran->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+                            </form>
                         </td>
-                        
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-
         </div>
     </div>
 </div>
 
-<!-- Modal Add Kategori Pelanggaran -->
-<div class="modal fade" id="addKategoriModal" tabindex="-1" aria-labelledby="addKategoriModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addKategoriModalLabel">Tambah Kategori Pelanggaran</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('Pelanggaran.storeKategori') }}" method="POST">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="nama_kategori" class="form-label">Nama Kategori:</label>
-                        <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Tambah Kategori</button>
-                </form>
-
-               
-                <table class="table table-striped mt-4">
-                    <thead>
-                        <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Nama Kategori</th>
-                            <th scope="col">Action</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($kategoris as $kategori)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $kategori->nama_kategori }}</td>
-                            <td>
-                                <a href="#" class="btn btn-warning btn-sm">Show</a>
-                                <a href="#" class="btn btn-info btn-sm">Edit</a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
+@include('Pelanggaran.addKategoriModal')
 @include('Pelanggaran.addSubkategorialModal')
-
-
+@include('Pelanggaran.createPelanggaranModal')
+@include('Pelanggaran.editPelanggaranModal')
 
 @endsection
